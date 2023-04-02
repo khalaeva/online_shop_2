@@ -6,7 +6,7 @@
         </div>
         <div class="catalog_items">
             <v-catalog-item
-                v-for="prod in products"
+                v-for="prod in PRODUCTS"
                 :key="prod.article"
                 :prod="prod"
                 @sendArticle="takeArticle"
@@ -17,46 +17,28 @@
 
 <script>
 import vCatalogItem from './catalog-item'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name: 'v-catalog',
     components: {
         vCatalogItem
     },
-    data () {
-        return {
-            products: [
-                {
-                    img: "1.jpeg",
-                    name: "Iphone 10",
-                    category: "Phones",
-                    price: "100",
-                    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibu",
-                    article: "1"
-                },
-                {
-                    img: "2.jpeg",
-                    name: "Iphone 11",
-                    category: "Phones",
-                    price: "100",
-                    description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi temp",
-                    article: "2"
-                },
-                {
-                    img: "3.jpeg",
-                    name: "Iphone 12",
-                    category: "Phones",
-                    price: "100",
-                    description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or.",
-                    article: "3"
-                }
-            ]
-        }
+    computed: {
+        ...mapGetters([
+            'PRODUCTS'
+        ])
     },
     methods: {
+        ...mapActions([
+            'GET_PRODUCTS_FROM_API'
+        ]),
         takeArticle(article) {
             console.log(article)
         }
+    },
+    mounted() {
+        this.GET_PRODUCTS_FROM_API()
     }
 }
 </script>
