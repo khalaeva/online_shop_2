@@ -2,10 +2,19 @@
     <div class="cart_item">
             <img class="cart_item__img" :src="require('../../assets/img/' + cart_data_item.img)" alt="img">
             <div class="cart_item_about">
-                <p>{{ cart_data_item.category }} {{ cart_data_item.name }}</p>
-                <p>{{ cart_data_item.description }}</p>
+                <h2>{{ cart_data_item.category }} {{ cart_data_item.name }}</h2>
             </div>
-            <p class="cart_item__status">Status</p>
+            <div class="cart_item_right">
+                <div class="cart_item_right__quantity">
+                    <span>-</span>
+                    {{ cart_data_item.quantity }}
+                    <span>+</span>
+                </div>
+                <button class="cart_item_right__delete_btn">Delete</button>
+            </div>
+            <div class="cart_item__price">
+                <p>{{ cart_data_item.price }}</p>
+            </div>
     </div>
 </template>
 
@@ -27,26 +36,32 @@ export default {
 .cart_item{
     margin-bottom: 40px;
     display: flex;
-    justify-content: space-around;
     flex-direction: row;
-    align-items: center;
     height: 300px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    justify-content: space-between;
     &__img {
+        margin: 15px;
         max-width: 220px;
         max-height: 300px;
     }
-    &_add_to_cart {
-        &__price{
-            text-align: center;
-        }
-        margin: 10px;
+    &_about {
+        width: 50%;
     }
-    &_about{
-        width: 800px;
-        margin: 10px;
+    &_right {
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
-    &__status {
-        margin: 10px;
+    &__price {
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
-}
+}   
 </style>

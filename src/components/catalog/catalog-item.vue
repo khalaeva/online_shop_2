@@ -31,6 +31,10 @@ export default {
         addToCart() {
             this.$emit('addToCart', this.prod);
         }
+    },
+    mounted() {
+        const cartItemData = this.prod;
+        cartItemData.quantity = 1;
     }
 }
 </script>
@@ -43,6 +47,7 @@ export default {
     flex-direction: row;
     align-items: center;
     height: 300px;
+    
     &__img {
         max-width: 220px;
         max-height: 300px;

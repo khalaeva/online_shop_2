@@ -1,15 +1,17 @@
 <template>
-<header class="header">
-    <div class="header_catalog">
-        Catalog
-    </div>
+<header class="header" >
+    <RouterLink to="/">
+        <div class="header_catalog">
+            Catalog
+        </div>
+    </RouterLink>
     <div class="header_right">
         <div class="header_right_user">
             User
         </div>
         <RouterLink to="/cart">
             <div class="header_right_cart">
-                Cart: ({{ CART.length }})
+                Cart: ({{ CART.reduce((a, b) => a + b.quantity, 0) }})
             </div>
         </RouterLink>
     </div>
@@ -26,7 +28,7 @@ export default {
         ...mapGetters([
             'CART'
         ])
-    }
+    },
 }
 </script>
 

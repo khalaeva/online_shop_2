@@ -11,7 +11,20 @@ const store = createStore({
             state.products = products;
         },
         SET_CART: (state, product) => {
-            state.cart.push(product);
+            if (state.cart.length) {
+                let isProdExist = false;
+                state.cart.map(function(item) {
+                    if (item.article === product.article) {
+                        isProdExist = true;
+                        item.quantity++;
+                    }
+                })
+                if (!isProdExist) {
+                    state.cart.push(product)
+                }
+            } else {
+                state.cart.push(product)
+            }
         }
     },
     actions: {
