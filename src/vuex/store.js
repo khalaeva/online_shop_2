@@ -9,6 +9,9 @@ const store = createStore({
     mutations: {
         SET_PRODUCTS_TO_STATE: (state, products) => {
             state.products = products;
+        },
+        SET_CART: (state, product) => {
+            state.cart.push(product);
         }
     },
     actions: {
@@ -24,11 +27,17 @@ const store = createStore({
                     console.log(e);
                     return e;
                 })
+        },
+        ADD_TO_CART({commit}, product) {
+            commit('SET_CART', product);
         }
     },
     getters: {
         PRODUCTS(state) {
             return state.products;
+        },
+        CART(state) {
+            return state.cart;
         }
     }
 });

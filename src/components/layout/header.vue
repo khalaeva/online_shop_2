@@ -7,17 +7,26 @@
         <div class="header_right_user">
             User
         </div>
-        <div class="header_right_cart">
-            Cart
-        </div>
+        <RouterLink to="/cart">
+            <div class="header_right_cart">
+                Cart: ({{ CART.length }})
+            </div>
+        </RouterLink>
     </div>
 </header>
 </template>
 
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-    name: 'v-header'
+    name: 'v-header',
+    computed: {
+        ...mapGetters([
+            'CART'
+        ])
+    }
 }
 </script>
 

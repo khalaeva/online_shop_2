@@ -9,7 +9,7 @@
                 v-for="prod in PRODUCTS"
                 :key="prod.article"
                 :prod="prod"
-                @sendArticle="takeArticle"
+                @addToCart="addToCart"
             />
         </div>
     </div>
@@ -31,10 +31,11 @@ export default {
     },
     methods: {
         ...mapActions([
-            'GET_PRODUCTS_FROM_API'
+            'GET_PRODUCTS_FROM_API',
+            'ADD_TO_CART'
         ]),
-        takeArticle(article) {
-            console.log(article)
+        addToCart(prod_cart) {
+            this.ADD_TO_CART(prod_cart)
         }
     },
     mounted() {
