@@ -6,11 +6,18 @@
             </div>
             <div class="cart_item_right">
                 <div class="cart_item_right__quantity">
-                    <span>-</span>
-                    {{ cart_data_item.quantity }}
-                    <span>+</span>
+                    <button @click="decrementItem">
+                        -
+                    </button>
+                    <p class="cart_item_right__quantity_i">{{ cart_data_item.quantity }}</p>
+                    <button @click="incrementItem">
+                        +
+                    </button>
                 </div>
-                <button class="cart_item_right__delete_btn">Delete</button>
+                <button 
+                    class="cart_item_right__delete_btn"
+                    @click="deleteFromCart"
+                    >Delete</button>
             </div>
             <div class="cart_item__price">
                 <p>{{ cart_data_item.price }}</p>
@@ -27,6 +34,17 @@ export default {
             default() {
                 return {}
             }
+        }
+    },
+    methods: {
+        deleteFromCart() {
+            this.$emit('deleteFromCart')
+        },
+        decrementItem() {
+            this.$emit('decrementItem')
+        },
+        incrementItem(){
+            this.$emit('incrementItem')
         }
     }
 }
@@ -55,6 +73,14 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        &__quantity {
+            margin-bottom: 10px;
+            display: flex;
+            &_i {
+                margin: 0 5px 0 5px;
+            }
+        }
     }
     &__price {
         width: 10%;

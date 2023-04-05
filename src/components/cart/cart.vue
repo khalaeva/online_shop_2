@@ -2,21 +2,24 @@
     <div class="cart">
         <div class="cart__item">
             <CartItem
-            v-for="item in CART"
+            v-for="(item, index) in CART"
             :key="item.article"
-            :cart_data_item="item"/>
+            :cart_data_item="item"
+            @deleteFromCart="deleteFromCart(index)"
+            @decrementItem="decrementItem(index)"
+            @incrementItem="incrementItem(index)"/>
         </div>
         <div class="cart_total">
             <p>Your order</p>
             <p>Количество товаров: {{ CART.reduce((a, b) => a + b.quantity, 0) }}</p>
-            <p>Итого: </p>
+            <p>Итого: {{ CART.reduce((a, b) => a + b.quantity * b.price, 0) }}</p>
             <button class="btn">Оформить заказ</button>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import CartItem from './cart-item.vue'
 
 export default {
@@ -28,6 +31,22 @@ export default {
         ...mapGetters([
             'CART'
         ])
+    },
+    methods: {
+        ...mapActions([
+            'DELETE_FROM_CART',
+            'DECREMENT_ITEM',
+            'INCREMENT_ITEM'
+        ]),
+        deleteFromCart(index) {
+            this.DELETE_FROM_CART(index)
+        },
+        decrementItem(index) {
+            this.DECREMENT_ITEM(index)
+        },
+        incrementItem(index) {
+            this.INCREMENT_ITEM(index)
+        }
     }
 }
 </script>
