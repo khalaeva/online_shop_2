@@ -6,9 +6,11 @@
         </div>
     </RouterLink>
     <div class="header_right">
-        <div class="header_right_user">
-            User
-        </div>
+        <RouterLink to="/login">
+            <div class="header_right_user">
+                User
+            </div>
+        </RouterLink>
         <RouterLink to="/cart">
             <div class="header_right_cart">
                 Cart: ({{ CART.reduce((a, b) => a + b.quantity, 0) }})

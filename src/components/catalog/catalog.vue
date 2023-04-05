@@ -35,11 +35,13 @@ export default {
             'ADD_TO_CART'
         ]),
         addToCart(prod_cart) {
+            
             this.ADD_TO_CART(prod_cart)
         }
     },
     mounted() {
-        this.GET_PRODUCTS_FROM_API()
+        this.GET_PRODUCTS_FROM_API();
+        
     }
 }
 </script>
