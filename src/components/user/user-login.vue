@@ -1,5 +1,5 @@
 <template>
-<div class="user_login">
+<div class="user_login" >
     <form>
         <h4 class="user_login__i">Log in</h4>
         <div class="user_login__i form-group">

@@ -9,17 +9,17 @@
                 </div>
                 <div class="col">
                   <label for="Lastname">Lastame</label>
-                  <input type="text" class="form-control" id="Lastname">
+                  <input type="text" class="form-control" id="Lastname" v-model="user.lastname">
                 </div>
             </div>
             <div class="user_reg__i form-group">
               <label for="Email">Email address</label>
-              <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email">
+              <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email" v-model="user.email">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="user_reg__i form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="user.password">
             </div>
             <button type="submit" class="btn btn-primary" style="margin-bottom: 10px">Regist</button>
             <br>
@@ -35,7 +35,10 @@ export default {
     data() {
         return {
             user: {
-                name: ''
+                name: '',
+                lastname: '',
+                email: '', 
+                password: '',
             }
         }
     },
