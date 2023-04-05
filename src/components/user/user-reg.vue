@@ -1,11 +1,11 @@
 <template>
     <div class="user_reg">
-        <form>
+        <form @submit="addUser">
             <h4 class="user_reg__i">Registration</h4>
             <div class="row user_reg__i">
                 <div class="col">
                   <label for="Name">Name</label>
-                  <input type="text" class="form-control" id="Name">
+                  <input type="text" class="form-control" id="Name" v-model="user.name">
                 </div>
                 <div class="col">
                   <label for="Lastname">Lastame</label>
@@ -28,8 +28,23 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-    name: 'v-user-reg'
+    name: 'v-user-reg',
+    data() {
+        return {
+            user: {
+                name: ''
+            }
+        }
+    },
+    methods: {
+        addUser() {
+            axios.post('http://localhost:3000/users', this.user)
+        }
+    }
+
 }
 </script>
 
