@@ -32,10 +32,6 @@ export default {
             this.$emit('addToCart', this.prod);
         }
     },
-    mounted() {
-        const cartItemData = this.prod;
-        cartItemData.quantity = 1;
-    }
 }
 </script>
 

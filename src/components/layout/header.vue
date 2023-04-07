@@ -2,7 +2,7 @@
 <header class="header" >
     <RouterLink to="/">
         <div class="header_catalog">
-            Catalog
+            <catalogList/>
         </div>
     </RouterLink>
     <div class="header_right">
@@ -22,10 +22,14 @@
 
 
 <script>
+import catalogList from '../catalog/catalog-list.vue';
 import { mapGetters } from 'vuex';
 
 export default {
     name: 'v-header',
+    components: {
+        catalogList
+    },
     computed: {
         ...mapGetters([
             'CART'

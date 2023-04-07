@@ -20,11 +20,18 @@ const store = createStore({
                     }
                 })
                 if (!isProdExist) {
-                    state.cart.push(product)
+                    state.cart.push(product);
+                    state.cart.forEach(function (product) {   //устанавливаем свойство "количество" элементам корзины
+                        product.quantity = 1;
+                      });
                 }
             } else {
-                state.cart.push(product)
+                state.cart.push(product);
+                state.cart.forEach(function (product) {
+                    product.quantity = 1;
+                  });
             }
+            console.log(state.cart.reduce((a, b) => a + b.quantity, 0));
         },
         DELETE_PROD: (state, index) => {
             state.cart.splice(index, 1)

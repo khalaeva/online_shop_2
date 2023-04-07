@@ -9,9 +9,13 @@ const router = createRouter({
     history: createWebHistory(), 
     routes: [
         {
-            path: '/', 
-            name: 'catalog', 
+            path: '/',
             component: catalog
+        },
+        {
+            path: '/catalog/:type', 
+            name: 'catalog', 
+            component: catalog,
         },
         {
             path: '/cart',

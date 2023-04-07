@@ -13,7 +13,7 @@
             <p>Your order</p>
             <p>Количество товаров: {{ CART.reduce((a, b) => a + b.quantity, 0) }}</p>
             <p>Итого: {{ CART.reduce((a, b) => a + b.quantity * b.price, 0) }}</p>
-            <button class="btn">Оформить заказ</button>
+            <button class="btn" @click="Buy">Оформить заказ</button>
         </div>
     </div>
 </template>
@@ -21,6 +21,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import CartItem from './cart-item.vue'
+import axios from 'axios';
 
 export default {
     name:'v-cart',
@@ -36,7 +37,8 @@ export default {
         ...mapActions([
             'DELETE_FROM_CART',
             'DECREMENT_ITEM',
-            'INCREMENT_ITEM'
+            'INCREMENT_ITEM',
+            'BUY'
         ]),
         deleteFromCart(index) {
             this.DELETE_FROM_CART(index)
@@ -46,6 +48,9 @@ export default {
         },
         incrementItem(index) {
             this.INCREMENT_ITEM(index)
+        },
+        Buy() {
+            axios.post('http://localhost:3000/buy', this.CART)
         }
     }
 }
