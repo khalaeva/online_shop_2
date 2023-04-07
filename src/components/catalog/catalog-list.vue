@@ -7,7 +7,7 @@
             <li><a class="dropdown-item" href="#"><h5>Смартфоны</h5></a>
                 <ul class="type">
                     <li>
-                        <RouterLink class="dropdown-item category" to="/">Apple</RouterLink>
+                        <RouterLink class="dropdown-item category" :to="`catalog/apple`">Apple</RouterLink>
                         <ul>
                             <li class="item">Смартфон Apple Iphone 10</li>
                             <li class="item">Смартфон Apple Iphone 11</li>
@@ -60,7 +60,16 @@
 </template>
 <script>
 export default {
-    name: 'v-catalog-list'
+    name: 'v-catalog-list',
+    data() {
+        return {
+            type: [
+                'Apple',
+                'Samsung',
+                'Headphones'
+            ]
+        }
+    }
 }
 </script>
 
