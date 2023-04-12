@@ -14,6 +14,10 @@
                 >Add to cart</button>
         </div>
     </div>
+    <!-- display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center; -->
 </template>
 
 <script>
@@ -38,24 +42,23 @@ export default {
 <style lang="scss" scoped>
 .catalog_item{
     margin-bottom: 40px;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 4fr 1fr 1fr;
     height: 300px;
-    
+    align-items: center;
     &__img {
         max-width: 220px;
         max-height: 300px;
     }
     &_add_to_cart {
+        min-width: 110px;
         &__price{
             text-align: center;
         }
         margin: 10px;
     }
     &_about{
-        width: 800px;
+        min-width: 450px;
         margin: 10px;
     }
     &__status {
