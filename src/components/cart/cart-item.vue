@@ -6,16 +6,16 @@
             </div>
             <div class="cart_item_right">
                 <div class="cart_item_right__quantity">
-                    <button @click="decrementItem">
+                    <button @click="decrementItem" class="btn btn-outline-primary btn-sm">
                         -
                     </button>
                     <p class="cart_item_right__quantity_i">{{ cart_data_item.quantity }}</p>
-                    <button @click="incrementItem">
+                    <button @click="incrementItem" class="btn btn-outline-primary btn-sm">
                         +
                     </button>
                 </div>
                 <button 
-                    class="cart_item_right__delete_btn"
+                    class="cart_item_right__delete_btn btn btn-primary"
                     @click="deleteFromCart"
                     >Delete</button>
             </div>
@@ -57,8 +57,7 @@ export default {
     flex-direction: row;
     min-width: 670px;
     height: 300px;
-    border: 1px solid grey;
-    border-radius: 10px;
+    border-bottom: 1px solid grey;
     justify-content: space-between;
     &__img {
         margin: 15px;
@@ -66,6 +65,7 @@ export default {
         max-height: 300px;
     }
     &_about {
+        margin-top: 30px;
         width: 50%;
     }
     &_right {

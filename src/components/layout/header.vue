@@ -2,6 +2,7 @@
 <header class="header" >
     <div class="header_catalog">
         <catalogList/>
+        
     </div>
     <div class="header_right">
         <RouterLink to="/login">

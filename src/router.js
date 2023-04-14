@@ -17,11 +17,11 @@ const router = createRouter({
             name: 'type',
             component: catalog,
             children: [
-                {
-                    path: ':category',
-                    name: 'category',
-                    component: catalog
-                }
+                 {
+                     path: ':category',
+                     name: 'category',
+                     component: catalog
+                 }
             ]
         },
         {

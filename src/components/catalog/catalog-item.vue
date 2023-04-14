@@ -5,11 +5,13 @@
             <p>{{ prod.category }} {{ prod.name }}</p>
             <p>{{ prod.description }}</p>
         </div>
-        <p class="catalog_item__status">Status</p>
+        <div class="catalog_item__status">
+            <p :style="{ color: status.color }">{{ status.txt }}</p>
+        </div>
         <div class="catalog_item_add_to_cart">
-            <p class="catalog_item_add_to_cart__price">{{ prod.price }} $</p>
+            <h5 style="margin-bottom: 20px" class="catalog_item_add_to_cart__price">{{ prod.price }} $</h5>
             <button 
-                class="catalog_item_add_to_cart__btn btn"
+                class="catalog_item_add_to_cart__btn btn btn-primary"
                 @click="addToCart"
                 >Add to cart</button>
         </div>
@@ -19,34 +21,57 @@
 <script>
 export default {
     name: 'v-catalog-item',
+    data() {
+        return {
+            status: {
+                txt: "Нет в наличии",
+                color: "red"
+            }
+        }
+    },
     props: {
         prod: {
             type: Object,
             default() {
                 return {}
             }
-        }
+        },
     },
     methods: {
         addToCart() {
             this.$emit('addToCart', this.prod);
         }
     },
+    mounted() {
+        if (this.prod.count > 0 && this.prod.count < 6) {
+            this.status.color = '#ffaa69';
+            this.status.txt = 'Мало'
+        }
+        else if (this.prod.count > 5) {
+            this.status.color = 'green';
+            this.status.txt = 'В наличии'
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 .catalog_item{
+    border-bottom: 1px solid lightgray;
     margin-bottom: 40px;
     display: grid;
-    grid-template-columns: 2fr 4fr 1fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr 1fr;
     height: 300px;
     align-items: center;
     &__img {
+        margin-right: 30px;
         max-width: 220px;
         max-height: 300px;
     }
     &_add_to_cart {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         min-width: 110px;
         &__price{
             text-align: center;
@@ -58,7 +83,7 @@ export default {
         margin: 10px;
     }
     &__status {
-        margin: 10px;
+        margin: auto;
     }
 }
 </style>

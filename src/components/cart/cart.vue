@@ -10,10 +10,10 @@
             @incrementItem="incrementItem(index)"/>
         </div>
         <div class="cart_total">
-            <p>Your order</p>
-            <p>Количество товаров: {{ CART.reduce((a, b) => a + b.quantity, 0) }}</p>
-            <p>Итого: {{ CART.reduce((a, b) => a + b.quantity * b.price, 0) }}</p>
-            <button class="btn" @click="Buy">Оформить заказ</button>
+            <h5 style="margin-bottom: 20px">Your order</h5>
+            <p style="font-size: 17px; margin-bottom: 5px">Количество товаров: {{ CART.reduce((a, b) => a + b.quantity, 0) }}</p>
+            <p style="font-size: 17px;">Итого: {{ CART.reduce((a, b) => a + b.quantity * b.price, 0) }}$</p>
+            <button class="btn btn-primary" @click="Buy">Оформить заказ</button>
         </div>
     </div>
 </template>
@@ -66,6 +66,7 @@ export default {
         width: 70%;
     }
     &_total {
+        padding: 20px;
         position: sticky;
         top: 10px;
         min-width: 200px;

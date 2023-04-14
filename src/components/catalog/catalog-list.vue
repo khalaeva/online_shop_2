@@ -1,15 +1,14 @@
 <template>
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Каталог
+          {{ type }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px">
-            <li><RouterLink :to="`smartphones`" class="dropdown-item" href="#"><h5>Смартфоны</h5></RouterLink>
+            <li><RouterLink :to="txt" class="dropdown-item" href="#"><h5>Смартфоны</h5></RouterLink>
                 <ul class="type">
                     <li>
                         <RouterLink class="dropdown-item category" :to="`apple`">Apple</RouterLink>
                         <ul>
-                            <li> {{ type }}</li>
                             <li class="item">Смартфон Apple Iphone 10</li>
                             <li class="item">Смартфон Apple Iphone 11</li>
                             <li class="item">Смартфон Apple Iphone 12</li>
@@ -64,6 +63,7 @@ export default {
     name: 'v-catalog-list',
     data() {
         return {
+            txt: 'smatphones'
             // type: [
             //     'Apple',
             //     'Samsung',
@@ -74,6 +74,7 @@ export default {
     computed: {
         type() {
             console.log(this.$route.params.type)
+            console.log(this.$route.params.category)
             return this.$route.params.type;
         }
     }

@@ -45,5 +45,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.catalog_top {
+    margin-bottom: 50px;
+}
+.catalog_items {
+    width: 90%;
+    margin: auto;
+}
 </style>
