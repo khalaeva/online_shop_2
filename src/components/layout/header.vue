@@ -1,10 +1,8 @@
 <template>
 <header class="header" >
-    <RouterLink to="/">
-        <div class="header_catalog">
-            <catalogList/>
-        </div>
-    </RouterLink>
+    <div class="header_catalog">
+        <catalogList/>
+    </div>
     <div class="header_right">
         <RouterLink to="/login">
             <div class="header_right_user">

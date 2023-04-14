@@ -4,11 +4,12 @@
           Каталог
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px">
-            <li><a class="dropdown-item" href="#"><h5>Смартфоны</h5></a>
+            <li><RouterLink :to="`smartphones`" class="dropdown-item" href="#"><h5>Смартфоны</h5></RouterLink>
                 <ul class="type">
                     <li>
-                        <RouterLink class="dropdown-item category" :to="`catalog/apple`">Apple</RouterLink>
+                        <RouterLink class="dropdown-item category" :to="`apple`">Apple</RouterLink>
                         <ul>
+                            <li> {{ type }}</li>
                             <li class="item">Смартфон Apple Iphone 10</li>
                             <li class="item">Смартфон Apple Iphone 11</li>
                             <li class="item">Смартфон Apple Iphone 12</li>
@@ -63,11 +64,17 @@ export default {
     name: 'v-catalog-list',
     data() {
         return {
-            type: [
-                'Apple',
-                'Samsung',
-                'Headphones'
-            ]
+            // type: [
+            //     'Apple',
+            //     'Samsung',
+            //     'Headphones'
+            // ]
+        }
+    },
+    computed: {
+        type() {
+            console.log(this.$route.params.type)
+            return this.$route.params.type;
         }
     }
 }

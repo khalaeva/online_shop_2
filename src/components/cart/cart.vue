@@ -60,11 +60,14 @@ export default {
 .cart{
     display: flex;
     flex-direction: row;
+    min-width: 968px;
     justify-content: space-around;
     &__item {
         width: 70%;
     }
     &_total {
+        position: sticky;
+        top: 10px;
         min-width: 200px;
         height: 200px;
         align-items: center;

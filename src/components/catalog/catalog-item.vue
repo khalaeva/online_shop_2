@@ -14,10 +14,6 @@
                 >Add to cart</button>
         </div>
     </div>
-    <!-- display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: center; -->
 </template>
 
 <script>

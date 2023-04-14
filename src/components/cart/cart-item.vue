@@ -55,6 +55,7 @@ export default {
     margin-bottom: 40px;
     display: flex;
     flex-direction: row;
+    min-width: 670px;
     height: 300px;
     border: 1px solid grey;
     border-radius: 10px;
