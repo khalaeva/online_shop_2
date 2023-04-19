@@ -69,12 +69,12 @@ export default {
         padding: 20px;
         position: sticky;
         top: 10px;
-        min-width: 200px;
+        min-width: 230px;
         height: 200px;
         align-items: center;
         border: 1px solid grey;
         border-radius: 10px;
-        width: 20%;
+
     }
 }
 </style>

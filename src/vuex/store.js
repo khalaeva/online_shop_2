@@ -11,27 +11,28 @@ const store = createStore({
             state.products = products;
         },
         SET_CART: (state, product) => {
-            if (state.cart.length) {
-                let isProdExist = false;
-                state.cart.map(function(item) {
-                    if (item.article === product.article) {
-                        isProdExist = true;
-                        item.quantity++;
+            if (product.count > 0) {
+                if (state.cart.length) {
+                    let isProdExist = false;
+                    state.cart.map(function(item) {
+                        if (item.article === product.article) {
+                            isProdExist = true;
+                            item.quantity++;
+                            item.count--;
+                        }
+                    })
+                    if (!isProdExist) {
+                        state.cart.push(product);
+                        state.cart[state.cart.length - 1].count -= 1;
+                        state.cart[state.cart.length - 1].quantity = 1;
                     }
-                })
-                if (!isProdExist) {
+                } else {
                     state.cart.push(product);
-                    state.cart.forEach(function (product) {   //устанавливаем свойство "количество" элементам корзины
-                        product.quantity = 1;
-                      });
+                    state.cart[state.cart.length - 1].count -= 1;
+                    state.cart[state.cart.length - 1].quantity = 1;
                 }
-            } else {
-                state.cart.push(product);
-                state.cart.forEach(function (product) {
-                    product.quantity = 1;
-                  });
             }
-            console.log(state.cart.reduce((a, b) => a + b.quantity, 0));
+            else { return 0 }
         },
         DELETE_PROD: (state, index) => {
             state.cart.splice(index, 1)
@@ -47,18 +48,17 @@ const store = createStore({
         }
     },
     actions: {
-        GET_PRODUCTS_FROM_API({commit}) {
-            return axios('http://localhost:3000/products', {
-                method: "GET"
-            })
-                .then((products) => {
-                    commit('SET_PRODUCTS_TO_STATE', products.data);
-                    return products;
-                })
-                .catch((e) => {
-                    console.log(e);
-                    return e;
-                })
+        async GET_PRODUCTS_FROM_API({commit}) {
+            try {
+                const products = await axios('http://localhost:3000/products', {
+                    method: "GET"
+                });
+                commit('SET_PRODUCTS_TO_STATE', products.data);
+                return products;
+            } catch (e) {
+                console.log(e);
+                return e;
+            }
         },
         ADD_TO_CART({commit}, product) {
             commit('SET_CART', product);

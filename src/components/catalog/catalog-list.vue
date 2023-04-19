@@ -1,58 +1,30 @@
 <template>
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ type }}
+          Каталог
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px">
-            <li><RouterLink :to="txt" class="dropdown-item" href="#"><h5>Смартфоны</h5></RouterLink>
+            <li><RouterLink :to="{ name: 'type', params: { type: 'Смартфоны'}}" class="dropdown-item"><h5>Смартфоны</h5></RouterLink>
                 <ul class="type">
                     <li>
-                        <RouterLink class="dropdown-item category" :to="`apple`">Apple</RouterLink>
-                        <ul>
-                            <li class="item">Смартфон Apple Iphone 10</li>
-                            <li class="item">Смартфон Apple Iphone 11</li>
-                            <li class="item">Смартфон Apple Iphone 12</li>
-                        </ul>
+                        <RouterLink class="dropdown-item category" :to="{name: 'category', params: { type: 'Смартфоны', category: 'Apple' }}">Apple</RouterLink>
                     </li>
                     <li>
-                        <a class="dropdown-item category" href="#">Samsung</a>
-                        <ul>
-                            <li class="item">Смартфон Samsung Galaxy S8</li>
-                            <li class="item">Смартфон Samsung Galaxy S12</li>
-                        </ul>
+                        <RouterLink class="dropdown-item category" :to="{name: 'category', params: { type: 'Смартфоны', category: 'Samsung' }}">Samsung</RouterLink>
                     </li>
                     <li>
-                        <a class="dropdown-item category" href="#">Сопутствующие товары</a>
+                        <RouterLink :to="{name: 'category', params: { type: 'Смартфоны', category: `Сопутствующие товары` }}" class="dropdown-item category">Сопутствующие товары</RouterLink>
                         <ul>
-                            <li><a class="dropdown-item subcategory" href="#">Наушники</a>
-                                <ul>
-                                    <li class="item">Наушники Apple AirPods Pro</li>
-                                </ul>
-                            </li>
-                            <li><a class="dropdown-item subcategory" href="#">Чехлы</a>
-                                <ul>
-                                    <li class="item">Чехол для Huawei</li>
-                                </ul>
-                            </li>
+                            <li><RouterLink :to="{name: 'subcat', params: { type: 'Смартфоны', category: `Сопутствующие товары`, subcategories: 'Наушники' }}" class="dropdown-item subcategory">Наушники</RouterLink></li>
+                            <li><RouterLink :to="{name: 'subcat', params: { type: 'Смартфоны', category: `Сопутствующие товары`, subcategories: 'Чехлы' }}" class="dropdown-item subcategory">Чехлы</RouterLink></li>
                         </ul>
                     </li>
-                    <li>Смартфон Huawei P50</li>
                 </ul> 
             </li>
-            <li><a class="dropdown-item" href="#"><h5>Аудиотехника</h5></a>
+            <li><RouterLink :to="{ name: 'type', params: { type: 'Аудиотехника'}}" class="dropdown-item"><h5>Аудиотехника</h5></RouterLink>
                 <ul class="type">
-                    <li><a class="dropdown-item category" href="#">Портативные колонки</a>
-                        <ul>
-                            <li class="item">Умная колонка Яндекс Станция</li>
-                            <li class="item">Колонка JBL</li>
-                        </ul>
-                    </li>
-                    <li><a class="dropdown-item category" href="#">Наушники</a>
-                        <ul>
-                            <li class="item">Наушники Apple AirPods Pro</li>
-                            <li class="item">Наушники JBL</li>
-                        </ul>
-                    </li>
+                    <li><RouterLink :to="{ name: 'category', params: { type: 'Аудиотехника', category: 'Портативные колонки'}}" class="dropdown-item category">Портативные колонки</RouterLink></li>
+                    <li><RouterLink :to="{ name: 'category', params: { type: 'Аудиотехника', category: 'Наушники'}}" class="dropdown-item category">Наушники</RouterLink></li>
                 </ul>
             </li>
         </ul>
@@ -63,20 +35,9 @@ export default {
     name: 'v-catalog-list',
     data() {
         return {
-            txt: 'smatphones'
-            // type: [
-            //     'Apple',
-            //     'Samsung',
-            //     'Headphones'
-            // ]
         }
     },
     computed: {
-        type() {
-            console.log(this.$route.params.type)
-            console.log(this.$route.params.category)
-            return this.$route.params.type;
-        }
     }
 }
 </script>

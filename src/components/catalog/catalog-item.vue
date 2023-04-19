@@ -11,6 +11,7 @@
         <div class="catalog_item_add_to_cart">
             <h5 style="margin-bottom: 20px" class="catalog_item_add_to_cart__price">{{ prod.price }} $</h5>
             <button 
+                :disabled="status.req"
                 class="catalog_item_add_to_cart__btn btn btn-primary"
                 @click="addToCart"
                 >Add to cart</button>
@@ -25,7 +26,8 @@ export default {
         return {
             status: {
                 txt: "Нет в наличии",
-                color: "red"
+                color: "red",
+                req: true
             }
         }
     },
@@ -35,7 +37,7 @@ export default {
             default() {
                 return {}
             }
-        },
+        }
     },
     methods: {
         addToCart() {
@@ -45,11 +47,13 @@ export default {
     mounted() {
         if (this.prod.count > 0 && this.prod.count < 6) {
             this.status.color = '#ffaa69';
-            this.status.txt = 'Мало'
+            this.status.txt = 'Мало';
+            this.status.req = false
         }
         else if (this.prod.count > 5) {
             this.status.color = 'green';
-            this.status.txt = 'В наличии'
+            this.status.txt = 'В наличии';
+            this.status.req = false
         }
     }
 }

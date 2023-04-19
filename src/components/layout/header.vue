@@ -12,7 +12,7 @@
         </RouterLink>
         <RouterLink to="/cart">
             <div class="header_right_cart">
-                Cart: ({{ CART.reduce((a, b) => a + b.quantity, 0) }})
+                Cart: ({{ CART.reduce((a, b) => +a + +b.quantity, 0) }})
             </div>
         </RouterLink>
     </div>
