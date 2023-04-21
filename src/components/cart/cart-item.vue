@@ -10,7 +10,7 @@
                         -
                     </button>
                     <p class="cart_item_right__quantity_i">{{ cart_data_item.quantity }}</p>
-                    <button @click="incrementItem" class="btn btn-outline-primary btn-sm">
+                    <button @click="incrementItem" class="btn btn-outline-primary btn-sm" :disabled="flagBtn">
                         +
                     </button>
                 </div>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+
 export default {
     name:'v-cart-item',
     props: {
@@ -36,6 +37,11 @@ export default {
             }
         }
     },
+    data() {
+        return {
+            flagBtn: false
+        }
+    },
     methods: {
         deleteFromCart() {
             this.$emit('deleteFromCart')
@@ -44,7 +50,17 @@ export default {
             this.$emit('decrementItem')
         },
         incrementItem(){
+            if (this.cart_data_item.count > 0) {
             this.$emit('incrementItem')
+            }
+            else {
+                this.flagBtn = true
+            }
+        }
+    },
+    mounted() {
+        if (this.cart_data_item.count === 0) {
+            this.flagBtn = true
         }
     }
 }

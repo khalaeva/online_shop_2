@@ -33,12 +33,6 @@
 <script>
 export default {
     name: 'v-catalog-list',
-    data() {
-        return {
-        }
-    },
-    computed: {
-    }
 }
 </script>
 

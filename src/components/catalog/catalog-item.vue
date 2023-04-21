@@ -9,7 +9,8 @@
             <p :style="{ color: status.color }">{{ status.txt }}</p>
         </div>
         <div class="catalog_item_add_to_cart">
-            <h5 style="margin-bottom: 20px" class="catalog_item_add_to_cart__price">{{ prod.price }} $</h5>
+            <h5 v-if="!EMAIL" style="margin-bottom: 20px" class="catalog_item_add_to_cart__price">{{ prod.price }} $</h5>
+            <h5 v-else style="margin-bottom: 20px" class="catalog_item_add_to_cart__price">{{ prod.salePrice }} $ <small class="text-muted" style="text-decoration: line-through">{{ prod.price }} $</small></h5>
             <button 
                 :disabled="status.req"
                 class="catalog_item_add_to_cart__btn btn btn-primary"
@@ -20,6 +21,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     name: 'v-catalog-item',
     data() {
@@ -39,12 +42,21 @@ export default {
             }
         }
     },
+    computed: {
+        ...mapGetters([
+            'EMAIL'
+        ])
+    },
     methods: {
         addToCart() {
             this.$emit('addToCart', this.prod);
+        if (this.prod.count === 0) {
+            this.status.req = true;
+        }
         }
     },
     mounted() {
+        console.log(this.prod)
         if (this.prod.count > 0 && this.prod.count < 6) {
             this.status.color = '#ffaa69';
             this.status.txt = 'Мало';

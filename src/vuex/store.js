@@ -5,6 +5,7 @@ const store = createStore({
     state: {
         products: [],
         cart: [],
+        email: '',
     },
     mutations: {
         SET_PRODUCTS_TO_STATE: (state, products) => {
@@ -34,6 +35,9 @@ const store = createStore({
             }
             else { return 0 }
         },
+        SET_EMAIL: (state, email) => {
+            state.email = email
+        },
         DELETE_PROD: (state, index) => {
             state.cart.splice(index, 1)
             console.log(state.cart)
@@ -60,6 +64,9 @@ const store = createStore({
                 return e;
             }
         },
+        ADD_EMAIL ({commit}, email) {
+            commit('SET_EMAIL', email)
+        },
         ADD_TO_CART({commit}, product) {
             commit('SET_CART', product);
         },
@@ -79,6 +86,9 @@ const store = createStore({
         },
         CART(state) {
             return state.cart;
+        },
+        EMAIL(state) {
+            return state.email;
         }
     }
 });

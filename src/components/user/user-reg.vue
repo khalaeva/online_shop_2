@@ -1,6 +1,6 @@
 <template>
     <div class="user_reg">
-        <form @submit="addUser">
+        <form @submit="addUserReg">
             <h4 class="user_reg__i">Registration</h4>
             <div class="row user_reg__i">
                 <div class="col">
@@ -43,7 +43,7 @@ export default {
         }
     },
     methods: {
-        addUser() {
+        addUserReg() {
             axios.post('http://localhost:3000/users', this.user)
         }
     }
@@ -54,6 +54,7 @@ export default {
 <style lang="scss" scoped>
 .user_reg{
     margin: auto;
+    margin-top: 270px;
     width: 500px;
     padding: 20px 40px 20px 40px;
     border: 1px solid lightgrey;
