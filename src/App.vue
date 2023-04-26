@@ -18,11 +18,13 @@ export default {
   },
   methods: {
     ...mapActions([
-            'GET_PRODUCTS_FROM_API'
+            'GET_PRODUCTS_FROM_API',
+            'GET_CATEGORIES_FROM_API'
           ])
   },
   mounted() {
     this.GET_PRODUCTS_FROM_API();
+    this.GET_CATEGORIES_FROM_API();
   }
 }
 </script>

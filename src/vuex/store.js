@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const store = createStore({
     state: {
+        categories: [],
         products: [],
         cart: [],
         email: '',
@@ -10,6 +11,9 @@ const store = createStore({
     mutations: {
         SET_PRODUCTS_TO_STATE: (state, products) => {
             state.products = products;
+        },
+        SET_CATEGORIES_TO_STATE: (state, categories) => {
+            state.categories = categories;
         },
         SET_CART: (state, product) => {
             if (product.count > 0) {
@@ -64,6 +68,18 @@ const store = createStore({
                 return e;
             }
         },
+        async GET_CATEGORIES_FROM_API({commit}) {
+            try {
+                const categories = await axios('http://localhost:3000/categories', {
+                    method: "GET"
+                });
+                commit('SET_CATEGORIES_TO_STATE', categories.data);
+                return categories;
+            } catch (e) {
+                console.log(e);
+                return e;
+            }
+        },
         ADD_EMAIL ({commit}, email) {
             commit('SET_EMAIL', email)
         },
@@ -89,6 +105,9 @@ const store = createStore({
         },
         EMAIL(state) {
             return state.email;
+        }, 
+        CATEGORIES(state) {
+            return state.categories;
         }
     }
 });

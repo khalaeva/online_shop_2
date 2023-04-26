@@ -3,8 +3,14 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Каталог
         </button>
+        
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px">
-            <li><RouterLink :to="{ name: 'type', params: { type: 'Смартфоны'}}" class="dropdown-item"><h5>Смартфоны</h5></RouterLink>
+            <li v-for="category in CATEGORIES" :key="category.index">
+                <span v-if="!category.parentCategoryId">{{ category.nameCategory }}
+                    <ul>{{ category.nameCategory }}</ul>
+                </span>
+            </li>
+            <!-- <li><RouterLink :to="{ name: 'type', params: { type: 'Смартфоны'}}" class="dropdown-item"><h5>Смартфоны</h5></RouterLink>
                 <ul class="type">
                     <li>
                         <RouterLink class="dropdown-item category" :to="{name: 'category', params: { type: 'Смартфоны', category: 'Apple' }}">Apple</RouterLink>
@@ -26,13 +32,21 @@
                     <li><RouterLink :to="{ name: 'category', params: { type: 'Аудиотехника', category: 'Портативные колонки'}}" class="dropdown-item category">Портативные колонки</RouterLink></li>
                     <li><RouterLink :to="{ name: 'category', params: { type: 'Аудиотехника', category: 'Наушники'}}" class="dropdown-item category">Наушники</RouterLink></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </div>
+    <!-- <p>{{ CATEGORIES }}</p> -->
 </template>
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     name: 'v-catalog-list',
+    computed: {
+        ...mapGetters([
+            'CATEGORIES'
+        ])
+    }
 }
 </script>
 

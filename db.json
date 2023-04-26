@@ -1,4 +1,87 @@
 {
+  "categories": [
+      {
+          "categoryId": 1,
+          "nameCategory": "Смартфоны",
+          "parentCategoryId": null
+      },
+      {
+          "categoryId": 2,
+          "nameCategory": "Аудиотехника",
+          "parentCategoryId": null
+      },
+      {
+          "categoryId": 3,
+          "nameCategory": "Apple",
+          "parentCategoryId": {
+              "categoryId": 1,
+              "nameCategory": "Смартфоны",
+              "parentCategoryId": null
+          }
+      },
+      {
+          "categoryId": 4,
+          "nameCategory": "Samsung",
+          "parentCategoryId": {
+              "categoryId": 1,
+              "nameCategory": "Смартфоны",
+              "parentCategoryId": null
+          }
+      },
+      {
+          "categoryId": 5,
+          "nameCategory": "Сопутствующие товары",
+          "parentCategoryId": {
+              "categoryId": 1,
+              "nameCategory": "Смартфоны",
+              "parentCategoryId": null
+          }
+      },
+      {
+          "categoryId": 6,
+          "nameCategory": "Наушники",
+          "parentCategoryId": {
+              "categoryId": 5,
+              "nameCategory": "Сопутствующие товары",
+              "parentCategoryId": {
+                  "categoryId": 1,
+                  "nameCategory": "Смартфоны",
+                  "parentCategoryId": null
+              }
+          }
+      },
+      {
+          "categoryId": 7,
+          "nameCategory": "Чехлы",
+          "parentCategoryId": {
+              "categoryId": 5,
+              "nameCategory": "Сопутствующие товары",
+              "parentCategoryId": {
+                  "categoryId": 1,
+                  "nameCategory": "Смартфоны",
+                  "parentCategoryId": null
+              }
+          }
+      },
+      {
+          "categoryId": 8,
+          "nameCategory": "Портативные колонки",
+          "parentCategoryId": {
+              "categoryId": 2,
+              "nameCategory": "Аудиотехника",
+              "parentCategoryId": null
+          }
+      },
+      {
+          "categoryId": 9,
+          "nameCategory": "Наушники",
+          "parentCategoryId": {
+              "categoryId": 2,
+              "nameCategory": "Аудиотехника",
+              "parentCategoryId": null
+          }
+      }
+  ],
   "products": [
     {
       "img": "1.jpeg",
