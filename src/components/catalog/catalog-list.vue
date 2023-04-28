@@ -6,7 +6,7 @@
         
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px">
             <li v-for="category in CATEGORIES" :key="category.index">
-                <span v-if="!category.parentCategoryId">{{ category.nameCategory }}
+                <span>
                     <ul>{{ category.nameCategory }}</ul>
                 </span>
             </li>
@@ -35,13 +35,16 @@
             </li> -->
         </ul>
     </div>
-    <!-- <p>{{ CATEGORIES }}</p> -->
 </template>
 <script>
 import { mapGetters } from 'vuex';
 
 export default {
     name: 'v-catalog-list',
+    data() {
+        return {
+        }
+    },
     computed: {
         ...mapGetters([
             'CATEGORIES'

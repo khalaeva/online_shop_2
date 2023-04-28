@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
-import axios from 'axios';
+import axios from 'axios'
+
 
 const store = createStore({
     state: {
@@ -14,6 +15,39 @@ const store = createStore({
         },
         SET_CATEGORIES_TO_STATE: (state, categories) => {
             state.categories = categories;
+            
+            let newCategories = [];
+
+            function recurse(newAr, oldAr) {
+                if (oldAr.length) {
+                    newAr = newAr.map(obj => ({ ...obj, child: [] }))
+                    for (let j = 0; j < newAr.length; j++) {
+                        for (let i = 0; i < oldAr.length; i++){
+                            if (oldAr[i].parentCategoryId === newAr[j].categoryId) {
+                                newAr[j].child.push(categories[i])
+                                oldAr.splice(i, 1)
+                                i--
+                            }
+                        }
+                    }
+                    console.log(newAr)
+                    for (let i = 0; i < newAr.length; i++) {
+                        recurse(newAr[i].child, oldAr)
+                    }
+                }
+                else { 
+                    return newAr
+                }
+            }
+
+            for (let i = 0; i < categories.length; i++) {
+                if (!categories[i].parentCategoryId) {
+                    newCategories.push(categories[i])
+                    categories.splice(i, 1)
+                    i--
+                }
+            }
+            recurse(newCategories, categories)
         },
         SET_CART: (state, product) => {
             if (product.count > 0) {
@@ -49,6 +83,10 @@ const store = createStore({
         DECREMENT_ITEM: (state, index) => {
             if (state.cart[index].quantity > 1) {
                 state.cart[index].quantity--
+            }
+            else if (state.cart[index].quantity === 1) {
+                state.cart.splice(index, 1)
+                console.log(state.cart)
             }
         },
         INCREMENT_ITEM: (state, index) => {
