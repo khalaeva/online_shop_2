@@ -3,13 +3,13 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Каталог
         </button>
-        
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px"></ul>
+        <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px">
             <li v-for="category in CATEGORIES" :key="category.index">
                 <span>
                     <ul>{{ category.nameCategory }}</ul>
                 </span>
-            </li>
+            </li> -->
             <!-- <li><RouterLink :to="{ name: 'type', params: { type: 'Смартфоны'}}" class="dropdown-item"><h5>Смартфоны</h5></RouterLink>
                 <ul class="type">
                     <li>
@@ -33,7 +33,7 @@
                     <li><RouterLink :to="{ name: 'category', params: { type: 'Аудиотехника', category: 'Наушники'}}" class="dropdown-item category">Наушники</RouterLink></li>
                 </ul>
             </li> -->
-        </ul>
+        <!-- </ul> -->
     </div>
 </template>
 <script>
@@ -49,6 +49,29 @@ export default {
         ...mapGetters([
             'CATEGORIES'
         ])
+    },
+    mounted() {
+            const data = this.CATEGORIES
+
+            const root = document.querySelector('ul');
+            const getItem = (name, id) => `<li data-id="${id}">${name}</li>`;
+
+            data.forEach((item) => {
+            const child = root.querySelector(`[data-id="${item.parentCategoryId}"]`);
+            const itemMarkup = getItem(item.nameCategory, item.categoryId);
+            
+            if (child) {
+                const list = child.querySelector('ul');
+                
+                if (list) {
+                    list.insertAdjacentHTML('beforeend', itemMarkup);
+                } else {
+                    child.insertAdjacentHTML('beforeend', `<ul>${itemMarkup}</ul>`);
+                }
+            } else {
+                root.insertAdjacentHTML('beforeend', itemMarkup);
+            }
+            });
     }
 }
 </script>
