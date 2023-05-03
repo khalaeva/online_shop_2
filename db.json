@@ -1,49 +1,49 @@
 {
   "categories": [
     {
-        "parentCategoryId": null,
-        "categoryId": 1,
-        "nameCategory": "Смартфоны"
+      "parentCategoryId": null,
+      "categoryId": 1,
+      "nameCategory": "Смартфоны"
     },
     {
-        "parentCategoryId": null,
-        "categoryId": 2,
-        "nameCategory": "Аудиотехника"
+      "parentCategoryId": null,
+      "categoryId": 2,
+      "nameCategory": "Аудиотехника"
     },
     {
-        "parentCategoryId": 1,
-        "categoryId": 3,
-        "nameCategory": "Apple"
+      "parentCategoryId": 1,
+      "categoryId": 3,
+      "nameCategory": "Apple"
     },
     {
-        "parentCategoryId": 1,
-        "categoryId": 4,
-        "nameCategory": "Samsung"
+      "parentCategoryId": 1,
+      "categoryId": 4,
+      "nameCategory": "Samsung"
     },
     {
-        "parentCategoryId": 1,
-        "categoryId": 5,
-        "nameCategory": "Сопутствующие товары"
+      "parentCategoryId": 1,
+      "categoryId": 5,
+      "nameCategory": "Сопутствующие товары"
     },
     {
-        "parentCategoryId": 5,
-        "categoryId": 6,
-        "nameCategory": "Наушники"
+      "parentCategoryId": 5,
+      "categoryId": 6,
+      "nameCategory": "Наушники"
     },
     {
-        "parentCategoryId": 5,
-        "categoryId": 7,
-        "nameCategory": "Чехлы"
+      "parentCategoryId": 5,
+      "categoryId": 7,
+      "nameCategory": "Чехлы"
     },
     {
-        "parentCategoryId": 2,
-        "categoryId": 8,
-        "nameCategory": "Портативные колонки"
+      "parentCategoryId": 2,
+      "categoryId": 8,
+      "nameCategory": "Портативные колонки"
     },
     {
-        "parentCategoryId": 2,
-        "categoryId": 9,
-        "nameCategory": "Наушники"
+      "parentCategoryId": 2,
+      "categoryId": 9,
+      "nameCategory": "Наушники"
     }
   ],
   "products": [
@@ -105,6 +105,13 @@
       "email": "",
       "password": "",
       "id": "P4jks_o"
+    },
+    {
+      "name": "",
+      "lastname": "",
+      "email": "",
+      "password": "",
+      "id": "iV3eUVu"
     }
   ]
 }

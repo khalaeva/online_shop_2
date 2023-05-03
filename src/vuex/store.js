@@ -14,64 +14,38 @@ const store = createStore({
             state.products = products;
         },
         SET_CATEGORIES_TO_STATE: (state, categories) => {
-            state.categories = categories;
-            // let newCategories = [];
-            // let i = 0;
-            // while (i < categories.length - 1) {
-            //     if (!categories[i].parentCategoryId) {
-            //         newCategories.push(categories[i])
-            //         categories.splice(i, 1)
-            //         console.log(categories)
-            //     }
-            //     else {
-            //         for (let j = 0; j < newCategories.length; j++) {
-            //             if (categories[i].parentCategoryId === newCategories[j].categoryId) {
-            //                 if (newCategories[j].child) {
-            //                     newCategories[j].child.push(categories[i])
-            //                 }
-            //                 else {
-            //                     newCategories[j].child = []
-            //                     newCategories[j].child.push(categories[i])
-            //                 }
-            //                 categories.splice(i, 1)
-            //             }
-            //             else {categories.splice(i, 1)}
-            //         }
-            //     }
-            // }
-            // console.log(newCategories)
-
-
-            // function recurse(newAr, oldAr) {
-            //     if (oldAr.length) {
-            //         newAr = newAr.map(obj => ({ ...obj, child: [] }))
-            //         for (let j = 0; j < newAr.length; j++) {
-            //             for (let i = 0; i < oldAr.length; i++){
-            //                 if (oldAr[i].parentCategoryId === newAr[j].categoryId) {
-            //                     newAr[j].child.push(categories[i])
-            //                     oldAr.splice(i, 1)
-            //                     i--
-            //                 }
-            //             }
-            //         }
-            //         console.log(newAr)
-            //         for (let i = 0; i < newAr.length; i++) {
-            //             recurse(newAr[i].child, oldAr)
-            //         }
-            //     }
-            //     else { 
-            //         return newAr
-            //     }
-            // }
-
-            // for (let i = 0; i < categories.length; i++) {
-            //     if (!categories[i].parentCategoryId) {
-            //         newCategories.push(categories[i])
-            //         categories.splice(i, 1)
-            //         i--
-            //     }
-            // }
-            // recurse(newCategories, categories)
+            function form_tree(arr) {
+                let tree = []
+                for (let i in arr) {
+                    if (arr[i].parentCategoryId === null)
+                    {
+                        if(Array.isArray(tree[0])) {
+                            tree[0].push((arr[i]))
+                        }
+                        else {
+                            tree[0] = []
+                            tree[0].push((arr[i]))
+                        }
+                    }
+                    else {
+                        if(Array.isArray(tree[arr[i].parentCategoryId])) {
+                            tree[arr[i].parentCategoryId].push((arr[i]))
+                        }
+                        else {
+                            tree[arr[i].parentCategoryId] = []
+                            tree[arr[i].parentCategoryId].push((arr[i]))
+                        }
+                    }
+                }
+                for (let i = 0; i < tree.length; i++) {
+                    if (tree[i] === undefined) {
+                        tree[i] = 0
+                    }
+                }
+                console.log(tree)
+                return tree
+            }
+            state.categories = form_tree(categories)
         },
         SET_CART: (state, product) => {
             if (product.count > 0) {

@@ -3,44 +3,23 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Каталог
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px"></ul>
-        <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 4px 8px 4px 8px">
-            <li v-for="category in CATEGORIES" :key="category.index">
-                <span>
-                    <ul>{{ category.nameCategory }}</ul>
-                </span>
-            </li> -->
-            <!-- <li><RouterLink :to="{ name: 'type', params: { type: 'Смартфоны'}}" class="dropdown-item"><h5>Смартфоны</h5></RouterLink>
-                <ul class="type">
-                    <li>
-                        <RouterLink class="dropdown-item category" :to="{name: 'category', params: { type: 'Смартфоны', category: 'Apple' }}">Apple</RouterLink>
-                    </li>
-                    <li>
-                        <RouterLink class="dropdown-item category" :to="{name: 'category', params: { type: 'Смартфоны', category: 'Samsung' }}">Samsung</RouterLink>
-                    </li>
-                    <li>
-                        <RouterLink :to="{name: 'category', params: { type: 'Смартфоны', category: `Сопутствующие товары` }}" class="dropdown-item category">Сопутствующие товары</RouterLink>
-                        <ul>
-                            <li><RouterLink :to="{name: 'subcat', params: { type: 'Смартфоны', category: `Сопутствующие товары`, subcategories: 'Наушники' }}" class="dropdown-item subcategory">Наушники</RouterLink></li>
-                            <li><RouterLink :to="{name: 'subcat', params: { type: 'Смартфоны', category: `Сопутствующие товары`, subcategories: 'Чехлы' }}" class="dropdown-item subcategory">Чехлы</RouterLink></li>
-                        </ul>
-                    </li>
-                </ul> 
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li v-for="category in CATEGORIES[0]" :key="category">
+                <RouterLink :to="{ name: 'type', params: { type: `category.nameCategory`}}">
+                    <h4 class="dropdown-item">{{ category.nameCategory }}</h4>
+                </RouterLink>
+                <Vtree :catId="category.categoryId"/> 
             </li>
-            <li><RouterLink :to="{ name: 'type', params: { type: 'Аудиотехника'}}" class="dropdown-item"><h5>Аудиотехника</h5></RouterLink>
-                <ul class="type">
-                    <li><RouterLink :to="{ name: 'category', params: { type: 'Аудиотехника', category: 'Портативные колонки'}}" class="dropdown-item category">Портативные колонки</RouterLink></li>
-                    <li><RouterLink :to="{ name: 'category', params: { type: 'Аудиотехника', category: 'Наушники'}}" class="dropdown-item category">Наушники</RouterLink></li>
-                </ul>
-            </li> -->
-        <!-- </ul> -->
+        </ul>
     </div>
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import Vtree from './v-tree.vue';
 
 export default {
     name: 'v-catalog-list',
+    components: {Vtree},
     data() {
         return {
         }
@@ -49,29 +28,6 @@ export default {
         ...mapGetters([
             'CATEGORIES'
         ])
-    },
-    mounted() {
-            const data = this.CATEGORIES
-
-            const root = document.querySelector('ul');
-            const getItem = (name, id) => `<li data-id="${id}">${name}</li>`;
-
-            data.forEach((item) => {
-            const child = root.querySelector(`[data-id="${item.parentCategoryId}"]`);
-            const itemMarkup = getItem(item.nameCategory, item.categoryId);
-            
-            if (child) {
-                const list = child.querySelector('ul');
-                
-                if (list) {
-                    list.insertAdjacentHTML('beforeend', itemMarkup);
-                } else {
-                    child.insertAdjacentHTML('beforeend', `<ul>${itemMarkup}</ul>`);
-                }
-            } else {
-                root.insertAdjacentHTML('beforeend', itemMarkup);
-            }
-            });
     }
 }
 </script>
@@ -83,26 +39,5 @@ export default {
     &:hover {
         background-color: lightgray;
     }
-}
-.item {
-    padding: 8px 4px 8px 4px;
-    white-space: nowrap;
-}
-.type {
-    margin-bottom: 8px;
-}
-.category {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-    font-size: 1.05rem;
-}
-.subcategory {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-    font-size: 1rem;
 }
 </style>
