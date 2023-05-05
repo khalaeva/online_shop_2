@@ -1,14 +1,7 @@
 <template>
     <div class="catalog">
         <div class="catalog_top">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li v-for="(bc, index) in BRDCRMS" :key="bc">
-                        <p v-if="index === BRDCRMS.length - 1"  aria-current="page">{{ bc }}</p>
-                        <p v-else><router-link to='/' >{{ bc }}</router-link>&nbsp;/&nbsp;</p>
-                    </li> 
-                </ol> 
-            </nav>
+            <vBreadcrums :id="this.$route.params"/>
             <div>
                 <h3 v-if="!route.type"> Главная </h3>
                 <h3 v-else> {{ route.type }} </h3>
@@ -27,6 +20,7 @@
 
 <script>
 import vCatalogItem from './catalog-item'
+import vBreadcrums from './v-breadcrums.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -37,7 +31,8 @@ export default {
         }
     },
     components: {
-        vCatalogItem
+        vCatalogItem,
+        vBreadcrums
     },
     computed: {
         ...mapGetters([
@@ -60,7 +55,6 @@ export default {
         }
     },
     mounted() {
-        
     }
 }
 </script>

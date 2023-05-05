@@ -91,8 +91,8 @@ const store = createStore({
         INCREMENT_ITEM: (state, index) => {
             state.cart[index].quantity++
         },
-        SET_BRDCRM: (state, brdcrms) => {
-            state.brdcrms.push(brdcrms)
+        SET_BRDCRMS: (state, brdcrms) => {
+            state.brdcrms = brdcrms
         }
     },
     actions: {
@@ -114,6 +114,7 @@ const store = createStore({
                     method: "GET"
                 });
                 commit('SET_CATEGORIES_TO_STATE', categories.data);
+                commit('SET_BRDCRMS', categories.data);
                 return categories;
             } catch (e) {
                 console.log(e);
@@ -135,8 +136,8 @@ const store = createStore({
         INCREMENT_ITEM({commit}, index) {
             commit('INCREMENT_ITEM', index)
         },
-        SET_BRDCRM({commit}, brdcrm) {
-            commit('SET_BRDCRM', brdcrm)
+        SET_BRDCRMS({commit}, brdcrm) {
+            commit('SET_BRDCRMS', brdcrm)
         }
     },
     getters: {

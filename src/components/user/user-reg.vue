@@ -44,7 +44,7 @@ export default {
     },
     methods: {
         addUserReg() {
-            axios.post('http://localhost:3000/users', this.user)
+            axios.post('http://localhost:3000/online-shop/users', this.user)
         }
     }
 
