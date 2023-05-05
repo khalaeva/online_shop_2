@@ -5,7 +5,7 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li v-for="category in CATEGORIES[0]" :key="category">
-                <RouterLink :to="{ name: 'type', params: { type: `category.nameCategory`}}">
+                <RouterLink :to="{ name: 'type', params: { type: category.nameCategory}}">
                     <h4 class="dropdown-item">{{ category.nameCategory }}</h4>
                 </RouterLink>
                 <Vtree :catId="category.categoryId"/> 

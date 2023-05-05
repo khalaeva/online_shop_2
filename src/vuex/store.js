@@ -7,6 +7,7 @@ const store = createStore({
         categories: [],
         products: [],
         cart: [],
+        brdcrms: ['Главная', 'Смартфоны', "Сопутствующие товары", "Наушники"],
         email: '',
     },
     mutations: {
@@ -89,6 +90,9 @@ const store = createStore({
         },
         INCREMENT_ITEM: (state, index) => {
             state.cart[index].quantity++
+        },
+        SET_BRDCRM: (state, brdcrms) => {
+            state.brdcrms.push(brdcrms)
         }
     },
     actions: {
@@ -130,6 +134,9 @@ const store = createStore({
         },
         INCREMENT_ITEM({commit}, index) {
             commit('INCREMENT_ITEM', index)
+        },
+        SET_BRDCRM({commit}, brdcrm) {
+            commit('SET_BRDCRM', brdcrm)
         }
     },
     getters: {
@@ -144,6 +151,9 @@ const store = createStore({
         }, 
         CATEGORIES(state) {
             return state.categories;
+        },
+        BRDCRMS(state) {
+            return state.brdcrms;
         }
     }
 });

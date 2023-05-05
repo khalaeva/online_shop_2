@@ -1,19 +1,18 @@
 <template>
     <div class="catalog">
         <div class="catalog_top">
-            <p>
-                <span v-show="!route.type">Главная</span>
-                <span v-show="route.type"> {{ route.type }} </span>
-                <span v-show="route.category"> / {{ route.category }} </span> 
-                <span v-show="route.subcategories"> / {{ route.subcategories }} </span>
-            </p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li v-for="(bc, index) in BRDCRMS" :key="bc">
+                        <p v-if="index === BRDCRMS.length - 1"  aria-current="page">{{ bc }}</p>
+                        <p v-else><router-link to='/' >{{ bc }}</router-link>&nbsp;/&nbsp;</p>
+                    </li> 
+                </ol> 
+            </nav>
             <div>
-                <h3 v-show="!route.type">Главная</h3>
-                <h3 v-if="!route.category">{{ route.type }}</h3>
-                <h3 v-if="!route.subcategories">{{ route.category }}</h3>
-                <h3 v-else>{{ route.subcategories }}</h3>
+                <h3 v-if="!route.type"> Главная </h3>
+                <h3 v-else> {{ route.type }} </h3>
             </div>
-            
         </div>
         <div class="catalog_items">
             <v-catalog-item
@@ -42,13 +41,14 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'PRODUCTS'
+            'PRODUCTS',
+            'BRDCRMS'
         ])
     },
     watch:{
-    $route (){
-        this.route = this.$route.params;
-    }
+        $route (){
+            this.route = this.$route.params;
+        }
     }, 
     methods: {
         ...mapActions([
