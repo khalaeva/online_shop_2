@@ -100,6 +100,7 @@ const store = createStore({
             try {
                 const products = await axios('http://localhost:3000/products', {
                     method: "GET"
+                    
                 });
                 commit('SET_PRODUCTS_TO_STATE', products.data);
                 return products;

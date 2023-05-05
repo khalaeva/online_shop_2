@@ -29,6 +29,8 @@ export default {
     watch: {
         id(value) {
             console.log(value)
+            let nameCat = this.BRDCRMS.find(x => x.categoryId === value).nameCategory;
+            console.log(nameCat)
         }
     }
 }
