@@ -7,8 +7,7 @@ const store = createStore({
         categories: [],
         products: [],
         cart: [],
-        brdcrms: ['Главная', 'Смартфоны', "Сопутствующие товары", "Наушники"],
-        email: '',
+        brdcrms: []
     },
     mutations: {
         SET_PRODUCTS_TO_STATE: (state, products) => {
@@ -161,6 +160,3 @@ const store = createStore({
 });
 
 export default store
-//вызвать метод GET_PRODUCTS_FROM_API получить данные из URL
-//вызвать мутацию(запихнуть все в state.products)
-//получить данные с помощью getters

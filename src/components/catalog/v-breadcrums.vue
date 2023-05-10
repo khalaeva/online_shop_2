@@ -39,6 +39,11 @@ export default {
                 brdcrm = this.BRDCRMS.find(el => el.categoryId === brdcrm.parentCategoryId)
             }
             this.arr.unshift(brdcrm.nameCategory)
+            axios
+                .get(`http://localhost:8080/customPC/${newVal}`)
+                .then(function (response) {
+                console.log(response);
+                });
         }
     }
 }
