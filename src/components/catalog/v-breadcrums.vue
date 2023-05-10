@@ -11,6 +11,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import axios from 'axios'
 
 export default {
     name: 'v-breadcrums',
@@ -42,7 +43,7 @@ export default {
             axios
                 .get(`http://localhost:8080/customPC/${newVal}`)
                 .then(function (response) {
-                console.log(response);
+                    console.log(response);
                 });
         }
     }
