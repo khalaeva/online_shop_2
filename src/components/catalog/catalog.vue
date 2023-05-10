@@ -2,10 +2,6 @@
     <div class="catalog">
         <div class="catalog_top">
             <vBreadcrums :id="this.$route.params"/>
-            <div>
-                <h3 v-if="!route.type"> Главная </h3>
-                <h3 v-else> {{ route.type }} </h3>
-            </div>
         </div>
         <div class="catalog_items">
             <v-catalog-item
