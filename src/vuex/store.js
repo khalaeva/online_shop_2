@@ -97,7 +97,7 @@ const store = createStore({
     actions: {
         async GET_PRODUCTS_FROM_API({commit}) {
             try {
-                const products = await axios('http://localhost:3000/products', {
+                const products = await axios('http://localhost:8080/online-shop/products', {
                     method: "GET"
                     
                 });
