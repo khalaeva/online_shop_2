@@ -2,7 +2,7 @@
     <div class="catalog_item">
         <img class="catalog_item__img" :src="require('../../assets/img/' + prod.img)" alt="img">
         <div class="catalog_item_about">
-            <p>{{ prod.category }} {{ prod.name }}</p>
+            <p> {{ prod.nameProduct }}</p>
             <p>{{ prod.description }}</p>
         </div>
         <div class="catalog_item__status">
@@ -50,13 +50,12 @@ export default {
     methods: {
         addToCart() {
             this.$emit('addToCart', this.prod);
-        if (this.prod.count === 0) {
-            this.status.req = true;
-        }
+            if (this.prod.count === 0) {
+                this.status.req = true;
+            }
         }
     },
     mounted() {
-        console.log(this.prod)
         if (this.prod.count > 0 && this.prod.count < 6) {
             this.status.color = '#ffaa69';
             this.status.txt = 'Мало';
