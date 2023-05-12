@@ -3,7 +3,7 @@
         <div class="cart__item">
             <CartItem
             v-for="(item, index) in CART"
-            :key="item.article"
+            :key="item.productId"
             :cart_data_item="item"
             @deleteFromCart="deleteFromCart(index)"
             @decrementItem="decrementItem(index)"
@@ -50,7 +50,17 @@ export default {
             this.INCREMENT_ITEM(index)
         },
         Buy() {
-            axios.post('http://localhost:3000/buy', this.CART)
+            let cart = []
+            for (let i in this.CART) {
+                let pro = {
+                    productId: this.CART[i].productId,
+                    quantity: this.CART[i].quantity
+                }
+                
+                cart.push(pro)
+                console.log(cart)
+            }
+            axios.post('http://localhost:3000/buy', cart)
         }
     }
 }

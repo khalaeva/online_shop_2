@@ -5,8 +5,8 @@
         </div>
         <div class="catalog_items">
             <v-catalog-item
-                v-for="prod in PRODUCTS"
-                :key="prod.article"
+                v-for="(prod, index) in PRODUCTS" 
+                :key="index "
                 :prod="prod"
                 @addToCart="addToCart"
             />
@@ -47,7 +47,8 @@ export default {
             'ADD_TO_CART'
         ]),
         addToCart(prod_cart) {
-                this.ADD_TO_CART(prod_cart)
+            console.log(prod_cart)
+            this.ADD_TO_CART(prod_cart)
         }
     },
     mounted() {

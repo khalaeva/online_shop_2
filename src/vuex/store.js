@@ -52,7 +52,7 @@ const store = createStore({
                 if (state.cart.length) {
                     let isProdExist = false;
                     state.cart.map(function(item) {
-                        if (item.article === product.article) {
+                        if (item.productId === product.productId) {
                             isProdExist = true;
                             item.quantity++;
                             item.count--;
@@ -97,7 +97,7 @@ const store = createStore({
     actions: {
         async GET_PRODUCTS_FROM_API({commit}) {
             try {
-                const products = await axios('http://localhost:8080/online-shop/products', {
+                const products = await axios('http://localhost:3000/products', {
                     method: "GET"
                     
                 });

@@ -45,6 +45,7 @@ export default {
                 .then(function (response) {
                     console.log(response);
                 });
+            console.log(value)
         }
     }
 }
