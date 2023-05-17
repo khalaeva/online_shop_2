@@ -37,8 +37,7 @@ export default {
         ...mapActions([
             'DELETE_FROM_CART',
             'DECREMENT_ITEM',
-            'INCREMENT_ITEM',
-            'BUY'
+            'INCREMENT_ITEM'
         ]),
         deleteFromCart(index) {
             this.DELETE_FROM_CART(index)
@@ -56,7 +55,6 @@ export default {
                     productId: this.CART[i].productId,
                     quantity: this.CART[i].quantity
                 }
-                
                 cart.push(pro)
                 console.log(cart)
             }

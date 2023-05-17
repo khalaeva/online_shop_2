@@ -1,7 +1,7 @@
 <template>
     <div class="catalog">
         <div class="catalog_top">
-            <vBreadcrums :id="this.$route.params"/>
+            <vBreadcrums/>
         </div>
         <div class="catalog_items">
             <v-catalog-item
@@ -23,7 +23,6 @@ export default {
     name: 'v-catalog',
     data() {
         return {
-            route: this.$route.params
         }
     },
     components: {
@@ -36,22 +35,14 @@ export default {
             'BRDCRMS'
         ])
     },
-    watch:{
-        $route (){
-            this.route = this.$route.params;
-        }
-    }, 
     methods: {
         ...mapActions([
             'GET_PRODUCTS_FROM_API',
             'ADD_TO_CART'
         ]),
         addToCart(prod_cart) {
-            console.log(prod_cart)
             this.ADD_TO_CART(prod_cart)
         }
-    },
-    mounted() {
     }
 }
 </script>

@@ -1,31 +1,28 @@
 <template>
     <ul>
-        <li  type="disc" v-for="cat in CATEGORIES[catId]" :key="cat">
+        <li type="disc" v-for="cat in tree[catId]" :key="cat">
             <RouterLink style="text-decoration: none" :to="{ name: 'type', params: { type: cat.categoryId}}">
-                <h5 class="dropdown-item">{{ cat.nameCategory }}</h5>
+                <h5 @click="this.$emit('setBrdcrm', cat.nameCategory)" class="dropdown-item">{{ cat.nameCategory }}</h5>
             </RouterLink>
-            <vTree :catId="cat.categoryId"/>
+            <vTree 
+                :tree="tree"
+                :catId="cat.categoryId"
+                @setBrdcrm="addBrdcrm"/>
         </li>
     </ul>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
     name: 'v-tree',
     props: {
-        catId: Number
+        catId: Number,
+        tree: Array
     },
-    data() {
-        return {
-            arrBC: []
+    methods: {
+        addBrdcrm(nameCat) {
+            this.$emit('setBrdcrm', nameCat)
         }
-    },
-    computed: {
-        ...mapGetters([
-            'CATEGORIES'
-        ])
     }
 }
 </script>

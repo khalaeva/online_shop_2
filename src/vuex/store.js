@@ -7,45 +7,14 @@ const store = createStore({
         categories: [],
         products: [],
         cart: [],
-        brdcrms: []
+        brdcrms: ['Главная']
     },
     mutations: {
         SET_PRODUCTS_TO_STATE: (state, products) => {
             state.products = products;
         },
         SET_CATEGORIES_TO_STATE: (state, categories) => {
-            function form_tree(arr) {
-                let tree = []
-                for (let i in arr) {
-                    if (arr[i].parentCategoryId === null)
-                    {
-                        if(Array.isArray(tree[0])) {
-                            tree[0].push((arr[i]))
-                        }
-                        else {
-                            tree[0] = []
-                            tree[0].push((arr[i]))
-                        }
-                    }
-                    else {
-                        if(Array.isArray(tree[arr[i].parentCategoryId])) {
-                            tree[arr[i].parentCategoryId].push((arr[i]))
-                        }
-                        else {
-                            tree[arr[i].parentCategoryId] = []
-                            tree[arr[i].parentCategoryId].push((arr[i]))
-                        }
-                    }
-                }
-                for (let i = 0; i < tree.length; i++) {
-                    if (tree[i] === undefined) {
-                        tree[i] = 0
-                    }
-                }
-                console.log(tree)
-                return tree
-            }
-            state.categories = form_tree(categories)
+            state.categories = categories
         },
         SET_CART: (state, product) => {
             if (product.count > 0) {
@@ -90,8 +59,11 @@ const store = createStore({
         INCREMENT_ITEM: (state, index) => {
             state.cart[index].quantity++
         },
-        SET_BRDCRMS: (state, brdcrms) => {
-            state.brdcrms = brdcrms
+        SET_BRDCRMS: (state, brdcrm) => {
+            state.brdcrms.unshift(brdcrm)
+        },
+        CLEAR_BRDCRMS: (state) => {
+            state.brdcrms = []
         }
     },
     actions: {
@@ -114,7 +86,6 @@ const store = createStore({
                     method: "GET"
                 });
                 commit('SET_CATEGORIES_TO_STATE', categories.data);
-                commit('SET_BRDCRMS', categories.data);
                 return categories;
             } catch (e) {
                 console.log(e);
@@ -138,6 +109,9 @@ const store = createStore({
         },
         SET_BRDCRMS({commit}, brdcrm) {
             commit('SET_BRDCRMS', brdcrm)
+        },
+        CLEAR_BRDCRMS({commit}) {
+            commit('CLEAR_BRDCRMS')
         }
     },
     getters: {

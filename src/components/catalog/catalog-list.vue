@@ -31,7 +31,6 @@ export default {
     components: {Vtree},
     data() {
         return {
-            arr: ['Главная'],
             tree: []
         }
     },
@@ -48,7 +47,6 @@ export default {
         ]),
         drawTree() {
             this.tree = this.formTree(this.CATEGORIES)
-            console.log(this.tree)
         },
         formTree(arr){
             let tree = []
@@ -87,8 +85,7 @@ export default {
                 this.SET_BRDCRMS(brdcrm.nameCategory)
                 brdcrm = this.CATEGORIES.find(el => el.categoryId === brdcrm.parentCategoryId)
             }
-            this.this.SET_BRDCRMS(brdcrm.nameCategory)
-            console.log(this.BRDCRMS)
+            this.SET_BRDCRMS(brdcrm.nameCategory)
         }
     }
 }
