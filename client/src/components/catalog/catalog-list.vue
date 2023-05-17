@@ -86,6 +86,7 @@ export default {
                 brdcrm = this.CATEGORIES.find(el => el.categoryId === brdcrm.parentCategoryId)
             }
             this.SET_BRDCRMS(brdcrm.nameCategory)
+            
         }
     }
 }
