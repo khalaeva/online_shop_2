@@ -3,6 +3,10 @@
         <div class="catalog_top">
             <vBreadcrums/>
         </div>
+        <div class="filter">
+            <span class="filter_value" v-if="isDefault" @click="isDefault = !isDefault">Сначала дешевле</span>
+            <span class="filter_value" v-else @click="isDefault = !isDefault">Сначала дороже</span>
+        </div>
         <div class="catalog_items">
             <v-catalog-item
                 v-for="(prod, index) in PRODUCTS" 
@@ -23,6 +27,7 @@ export default {
     name: 'v-catalog',
     data() {
         return {
+            isDefault: true
         }
     },
     components: {
@@ -48,11 +53,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.filter{
+    display: flex;
+    justify-content: flex-end;
+    min-width: 800px;
+    margin-right: 150px;
+    &_value{
+        cursor: pointer;
+        &:hover{
+            color: gray;
+        }
+    }
+}
 .catalog_top {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 .catalog_items {
-    width: 90%;
+    border-top: 1px solid lightgray;
     margin: auto;
 }
 </style>

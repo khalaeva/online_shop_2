@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="margin: 0 100px 0 100px">
     <Header v-if="$route.path !== '/login'  && $route.path !== '/regist'"/>
     <MainWrapper/>
   </div>

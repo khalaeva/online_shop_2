@@ -82,7 +82,6 @@ export default {
         align-items: center;
         border: 1px solid grey;
         border-radius: 10px;
-
     }
 }
 </style>
